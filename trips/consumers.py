@@ -4,10 +4,14 @@ from channels.generic.websocket import AsyncJsonWebsocketConsumer
 class TaxiConsumer(AsyncJsonWebsocketConsumer):
 
     async def connect(self):
-        await self.channel_layer.group_add(
-            group='test',
-            channel=self.channel_name,
-        )
+        user = self.scope['user']
+        if user.is_anonymous:
+            await self.close()
+        else:
+            await self.channel_layer.group_add(
+                group='test',
+                channel=self.channel_name,
+            )
         await self.accept()
 
     async def receive_json(self, content, **kwargs):
@@ -27,6 +31,7 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
     async def disconnect(self, code):
         await self.channel_layer.group_discard(
             group='test',
-            channel=self.channel_name,
+            channel=self.channel_name
         )
         await super().disconnect(code)
+
