@@ -18,6 +18,7 @@ class TokenAuthMiddleware:
         close_old_connections()
         query_string = parse_qs(scope['query_string'].decode())
         token = query_string.get('token')
+
         if not token:
             scope['user'] = AnonymousUser()
             return self.inner(scope)

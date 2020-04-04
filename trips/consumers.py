@@ -5,6 +5,7 @@ class TaxiConsumer(AsyncJsonWebsocketConsumer):
 
     async def connect(self):
         user = self.scope['user']
+
         if user.is_anonymous:
             await self.close()
         else:

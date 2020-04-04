@@ -5,7 +5,7 @@ from channels.testing import WebsocketCommunicator
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import AccessToken
 
-from server.routing import application
+from taxi.routing import application
 
 
 @database_sync_to_async
@@ -37,6 +37,7 @@ class TestWebSocket:
             application=application,
             path=f'/taxi/?token={access}'
         )
+
         connected, _ = await communicator.connect()
         assert connected is True
         await communicator.disconnect()

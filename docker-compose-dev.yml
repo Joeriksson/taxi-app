@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000 --settings=server.settings
+    command: python /code/manage.py runserver 0.0.0.0:8000 --settings=taxi.settings
     volumes:
       - .:/code
     ports:

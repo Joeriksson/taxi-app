@@ -1,5 +1,5 @@
 """
-ASGI config for server project.
+ASGI config for taxi project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -13,6 +13,6 @@ import django
 from django.core.asgi import get_asgi_application
 from channels.routing import get_default_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'server.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taxi.settings')
 django.setup()
 application = get_asgi_application()
