@@ -29,6 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('id',)
 
+
 class LogInSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -39,9 +40,16 @@ class LogInSerializer(TokenObtainPairSerializer):
                 token[key] = value
         return token
 
+
 class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
         fields = '__all__'
         read_only_fields = ('id', 'created', 'updated')
 
+
+class NestedTripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = '__all__'
+        depth = 1
